@@ -12,3 +12,11 @@ Since i´m attending some presencial events i had this idea: "Create an app wher
 - Fastify
 
 ## How to run
+
+### 1 - Docker
+
+- Install Docker through docker [website](https://www.docker.com)
+- After installing, open project terminal and run the following command to create the container with the database:
+  ```
+    docker-compose up
+  ```
