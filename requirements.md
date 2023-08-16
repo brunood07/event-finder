@@ -22,7 +22,6 @@
 - [] - The user document should be validated by the national pattern
 - [] - The user should be identified by a JWT (Json Web Token)
 
-
 ## Non-Functional Requirements
 - [] - User should not be able to register with a already registered email
 - [] - User should not be able to register with a already registered document
