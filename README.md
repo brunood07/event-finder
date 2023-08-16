@@ -53,7 +53,7 @@ This part of our readme will tell a little more about of database structuring an
 - Since it has been told, i'm trying to fill some gaps of knowledge i have in my formation, and one of those gaps is: structuring a database.
 - I know my structuring in this project will not be perfect, but i´m trying to improve while i continue studying the theme on other online courses.
 - This is the ER Diagram of my database:
-![Alt text](image.png)
+![Alt text](image-1.png)
 
 - The major idea here was, i need to register a user, a event and make a reservation.
 - I tried to keep it without creating a lot of fields, i tried to keep it simple and small, only using the necessary.
