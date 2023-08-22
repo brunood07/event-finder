@@ -1,7 +1,7 @@
 # Requirements
 
 ## Functional Requirements
-- [] - Should be able to register
+- [x] - Should be able to register
 - [] - Should be able to authenticate
 - [] - Should be possible to get profile information of a authenticated user
 - [] - Should be possible to get the number of reservations of a authenticated user
@@ -16,15 +16,15 @@
 - [] - Should be able to register events
 
 ## Domain Requirements
-- [] - The user password should be encrypted
+- [x] - The user password should be encrypted
 - [] - The application data should be persisted on a PostgreSQL database
 - [] - All list of data should be paginated by 10 items per page
 - [] - The user document should be validated by the national pattern
 - [] - The user should be identified by a JWT (Json Web Token)
 
 ## Non-Functional Requirements
-- [] - User should not be able to register with a already registered email
-- [] - User should not be able to register with a already registered document
+- [x] - User should not be able to register with a already registered email
+- [x] - User should not be able to register with a already registered document
 - [] - User should not be able to reserve 2 spots in same event
 - [] - User should not be able to make a reservation if he is not at least 5km nearby of the event
 - [] - Reservation could not be accepted with less than 24 hours before the event
