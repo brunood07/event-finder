@@ -1,8 +1,10 @@
+import { InvalidEmailError } from '@/user/infra/errors/invalid-email'
+
 export default class ValidateEmail {
   readonly value: string
 
   constructor (email: string) {
-    if (!this.isValid(email)) throw new Error('Invalid email')
+    if (!this.isValid(email)) throw new InvalidEmailError()
     this.value = email
   }
 

@@ -1,8 +1,10 @@
+import { InvalidDocumentError } from '@/user/infra/errors/invalid-document'
+
 export default class ValidateCpf {
   value: string
 
   constructor(cpf: string) {
-    if (!this.validate(cpf)) throw new Error('Invalid cpf')
+    if (!this.validate(cpf)) throw new InvalidDocumentError()
     this.value = cpf
   }
 

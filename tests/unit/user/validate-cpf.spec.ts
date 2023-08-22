@@ -17,6 +17,6 @@ describe('Validate CPF', () => {
     '111.111.111-11', '222.222.222-22'
   ])('should be able to check if a cpf is invalid', async (cpf) => {
 
-    expect(() => new ValidateCpf(cpf)).toThrow(new Error('Invalid cpf'))
+    expect(() => new ValidateCpf(cpf)).toThrow(new Error('Invalid document'))
   })
 })

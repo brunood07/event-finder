@@ -1,4 +1,7 @@
 import RegisterUseCase from '@/user/application/usecase/register-use-case'
+import { InvalidDocumentError } from '@/user/infra/errors/invalid-document'
+import { InvalidEmailError } from '@/user/infra/errors/invalid-email'
+import { UserAlreadyExistsError } from '@/user/infra/errors/user-already-exists'
 import InMemoryUsersRepository from '@/user/infra/repository/InMemoryUsersRepository'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -36,7 +39,7 @@ describe('Register Use Case', () => {
       document: '08339145029',
       email: 'john@doe.com',
       password: '123456789'
-    })).rejects.toBeInstanceOf(Error)
+    })).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
 
   it('should not be able to register a new user with a already registered document', async () => {
@@ -54,7 +57,7 @@ describe('Register Use Case', () => {
       document: '42201034060',
       email: 'johndoe@doe.com',
       password: '123456789'
-    })).rejects.toBeInstanceOf(Error)
+    })).rejects.toBeInstanceOf(UserAlreadyExistsError)
   })
 
   it('should not be able to register a new user with a invalid email', async () => {
@@ -64,7 +67,7 @@ describe('Register Use Case', () => {
       document: '42201034060',
       email: '',
       password: '123456789'
-    })).rejects.toBeInstanceOf(Error)
+    })).rejects.toBeInstanceOf(InvalidEmailError)
   })
 
   it('should not be able to register a new user with a invalid document', async () => {
@@ -74,6 +77,6 @@ describe('Register Use Case', () => {
       document: '',
       email: 'john@doe.com',
       password: '123456789'
-    })).rejects.toBeInstanceOf(Error)
+    })).rejects.toBeInstanceOf(InvalidDocumentError)
   })
 })
