@@ -17,9 +17,10 @@
 
 ## Domain Requirements
 - [x] - The user password should be encrypted
-- [] - The application data should be persisted on a PostgreSQL database
+- [x] - The application data should be persisted on a PostgreSQL database
+- [x] - The user document should be validated by the national pattern
+- [x] - The user email should be validated
 - [] - All list of data should be paginated by 10 items per page
-- [] - The user document should be validated by the national pattern
 - [] - The user should be identified by a JWT (Json Web Token)
 
 ## Non-Functional Requirements

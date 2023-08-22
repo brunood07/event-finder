@@ -1,24 +1,26 @@
-import { compare, hash } from 'bcryptjs'
-
+import { pbkdf2, randomBytes } from 'node:crypto'
+ 
 export default class PasswordHash {
-  private password: string
+  static ITERATIONS = 100
+  static KEY_LENGTH = 64
+  static DIGEST = 'sha512'
 
-  constructor(password: string) {
-    this.password = password
+  constructor (readonly value: string, readonly salt: string ) {}
+
+  static create(password: string, salt?: string): Promise<PasswordHash> {
+    const generatedSalt = salt || randomBytes(20).toString('hex')
+    return new Promise((resolve) => {
+      pbkdf2(password, generatedSalt, PasswordHash.ITERATIONS, PasswordHash.KEY_LENGTH, PasswordHash.DIGEST, (error, value) => {
+        resolve(new PasswordHash(value.toString('hex'), generatedSalt))
+      })
+    })
   }
 
-  hash = async (salt: number): Promise<string> => {
-    const password_hash = await hash(this.password, salt)
-
-    if (!password_hash) {
-      throw new Error('Cannot generate password hash')
-    }
-
-    return password_hash
-  }
-
-  compare = async (password_hash: string): Promise<boolean> => {
-    const isCorrectlyPassword = compare(this.password, password_hash)
-    return isCorrectlyPassword
+  async validate(password: string) {
+    return new Promise((resolve) => {
+      pbkdf2(password, this.salt, PasswordHash.ITERATIONS, PasswordHash.KEY_LENGTH, PasswordHash.DIGEST, (error, value) => {
+        resolve(this.value === value.toString('hex'))
+      })
+    })
   }
 }

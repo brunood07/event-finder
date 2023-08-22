@@ -1,4 +1,4 @@
-import PasswordHash from '@/user/domain/entities/password-hash'
+
 import UsersRepository from '../repository/UsersRepository'
 import { User } from '@prisma/client'
 import ValidateCpf from '@/user/domain/entities/validate-cpf'
@@ -6,6 +6,8 @@ import ValidateEmail from '@/user/domain/entities/validate-email'
 import { UserAlreadyExistsError } from '@/user/infra/errors/user-already-exists'
 import { InvalidEmailError } from '@/user/infra/errors/invalid-email'
 import { InvalidDocumentError } from '@/user/infra/errors/invalid-document'
+import PasswordHash from '@/user/domain/entities/password-hash'
+import { env } from '@/core/env'
 
 interface CreateUserDTO {
   firstName: string
@@ -37,8 +39,7 @@ export default class RegisterUseCase {
     const hasDocumentAlreadyBeenUsed = await this.usersRepository.findByDocument(document)
     if (hasDocumentAlreadyBeenUsed) throw new UserAlreadyExistsError()
 
-    const passordEncrypt = new PasswordHash(password)
-    const password_hash = await passordEncrypt.hash(6)
+    const password_hash = (await PasswordHash.create(password, env.PASSWORD_SALT)).value
 
     const user = await this.usersRepository.register({
       password_hash,
