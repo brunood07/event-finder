@@ -57,7 +57,7 @@ describe('Register Use Case', () => {
     })).rejects.toBeInstanceOf(Error)
   })
 
-  it('should not be able to register a new user without email', async () => {
+  it('should not be able to register a new user with a invalid email', async () => {
     await expect(registerUseCase.execute({
       firstName: 'John',
       lastName: 'Doe',
@@ -67,7 +67,7 @@ describe('Register Use Case', () => {
     })).rejects.toBeInstanceOf(Error)
   })
 
-  it('should not be able to register a new user without document', async () => {
+  it('should not be able to register a new user with a invalid document', async () => {
     await expect(registerUseCase.execute({
       firstName: 'John',
       lastName: 'Doe',

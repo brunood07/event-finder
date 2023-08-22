@@ -1,6 +1,8 @@
 import PasswordHash from '@/user/domain/entities/password-hash'
 import UsersRepository from '../repository/UsersRepository'
 import { User } from '@prisma/client'
+import ValidateCpf from '@/user/domain/entities/validate-cpf'
+import ValidateEmail from '@/user/domain/entities/validate-email'
 
 interface CreateUserDTO {
   firstName: string
@@ -19,9 +21,16 @@ export default class RegisterUseCase {
 
   execute = async (data: CreateUserDTO): Promise<RegisterUseCaseResponse> => {
     const { document, email, password } = data
-    if (!document || !email) throw new Error('Missing information')
+
+    const isValidDocument = new ValidateCpf(document)
+    if (!isValidDocument) throw new Error('Invalid Document')
+
+    const isValidEmail = new ValidateEmail(email)
+    if (!isValidEmail) throw new Error('Invalid Email')
+
     const hasEmailAlreadyBeenUsed = await this.usersRepository.findByEmail(email)
     if (hasEmailAlreadyBeenUsed) throw new Error('Email already registered')
+    
     const hasDocumentAlreadyBeenUsed = await this.usersRepository.findByDocument(document)
     if (hasDocumentAlreadyBeenUsed) throw new Error('Document already registered')
 
