@@ -1,4 +1,4 @@
-import Fastify, { RouteHandlerMethod } from 'fastify'
+import Fastify, { FastifyPluginCallback, FastifyRegisterOptions, RouteHandlerMethod } from 'fastify'
 import HttpServer from './HttpServer'
 
 export const enum HTTP_METHODS {
@@ -23,5 +23,9 @@ export class FastifyHttpServer implements HttpServer<RouteHandlerMethod> {
     } catch (error) {
       console.error(error)
     }
+  }
+
+  public async register(plugin: FastifyPluginCallback, opts?: FastifyRegisterOptions<unknown>): Promise<void> {
+    this.app.register(plugin, opts)
   }
 }

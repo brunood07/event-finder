@@ -4,6 +4,7 @@ import { Prisma, User } from '@prisma/client'
 
 export default class PrismaUsersRepository implements UsersRepository {
   async register(data: Prisma.UserCreateInput): Promise<User> {
+    console.log('🚀 ~ file: PrismaUsersRepository.ts:7 ~ PrismaUsersRepository ~ register ~ data:', data)
     const user = await prisma.user.create({
       data
     })

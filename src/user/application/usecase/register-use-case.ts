@@ -1,4 +1,3 @@
-
 import UsersRepository from '../repository/UsersRepository'
 import { User } from '@prisma/client'
 import ValidateCpf from '@/user/domain/entities/validate-cpf'
@@ -25,7 +24,7 @@ export default class RegisterUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
   execute = async (data: CreateUserDTO): Promise<RegisterUseCaseResponse> => {
-    const { document, email, password } = data
+    const { document, email, password, firstName, lastName } = data
 
     const isValidDocument = new ValidateCpf(document)
     if (!isValidDocument) throw new InvalidDocumentError()
@@ -42,8 +41,11 @@ export default class RegisterUseCase {
     const password_hash = (await PasswordHash.create(password, env.PASSWORD_SALT)).value
 
     const user = await this.usersRepository.register({
-      password_hash,
-      ...data
+      document, 
+      email, 
+      firstName, 
+      lastName, 
+      password_hash
     })
 
     return { user }

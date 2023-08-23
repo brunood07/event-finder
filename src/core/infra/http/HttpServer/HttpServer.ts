@@ -1,4 +1,7 @@
+import { FastifyPluginCallback, FastifyRegisterOptions } from 'fastify'
+
 export default interface HttpServer<RouteHandlerMethod> {
-  on (method: string, url: string, handler: RouteHandlerMethod): Promise<void>;
+  register(plugin: FastifyPluginCallback, opts?: FastifyRegisterOptions<unknown>): void;
+  on(method: string, url: string, handler: RouteHandlerMethod): Promise<void>;
   listen (port: number): Promise<void>;
 }
