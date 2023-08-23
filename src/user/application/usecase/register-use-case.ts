@@ -7,6 +7,7 @@ import { InvalidEmailError } from '@/user/infra/errors/invalid-email'
 import { InvalidDocumentError } from '@/user/infra/errors/invalid-document'
 import PasswordHash from '@/user/domain/entities/password-hash'
 import { env } from '@/core/env'
+import UseCase from '@/core/application/usecase/use-case'
 
 interface CreateUserDTO {
   firstName: string
@@ -20,7 +21,7 @@ interface RegisterUseCaseResponse {
   user: User
 }
 
-export default class RegisterUseCase {
+export default class RegisterUseCase implements UseCase {
   constructor(private usersRepository: UsersRepository) {}
 
   execute = async (data: CreateUserDTO): Promise<RegisterUseCaseResponse> => {
