@@ -2,7 +2,7 @@
 
 ## Functional Requirements
 - [x] - Should be able to register
-- [] - Should be able to authenticate
+- [x] - Should be able to authenticate
 - [] - Should be possible to get profile information of a authenticated user
 - [] - Should be possible to get the number of reservations of a authenticated user
 - [] - Should be able to a user to get his reservation history
@@ -21,7 +21,7 @@
 - [x] - The user document should be validated by the national pattern
 - [x] - The user email should be validated
 - [] - All list of data should be paginated by 10 items per page
-- [] - The user should be identified by a JWT (Json Web Token)
+- [x] - The user should be identified by a JWT (Json Web Token)
 
 ## Non-Functional Requirements
 - [x] - User should not be able to register with a already registered email
