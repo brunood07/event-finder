@@ -1,7 +1,6 @@
-import { FastifyPluginCallback, FastifyRegisterOptions } from 'fastify'
-
 export default interface HttpServer<RouteHandlerMethod> {
-  register(plugin: FastifyPluginCallback, opts?: FastifyRegisterOptions<unknown>): void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register(plugin: any, opts?: any): void;
   on(method: string, url: string, handler: RouteHandlerMethod): Promise<void>;
   listen (port: number): Promise<void>;
 }

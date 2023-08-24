@@ -5,7 +5,7 @@ export default class PasswordHash {
   static KEY_LENGTH = 64
   static DIGEST = 'sha512'
 
-  constructor (readonly value: string, readonly salt: string ) {}
+  constructor (readonly value: string, readonly salt: string ) { }
 
   static create(password: string, salt?: string): Promise<PasswordHash> {
     const generatedSalt = salt || randomBytes(20).toString('hex')

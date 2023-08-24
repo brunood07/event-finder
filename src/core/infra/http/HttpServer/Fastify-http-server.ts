@@ -1,4 +1,4 @@
-import Fastify, { FastifyPluginCallback, FastifyRegisterOptions, RouteHandlerMethod } from 'fastify'
+import Fastify, { RouteHandlerMethod } from 'fastify'
 import HttpServer from './HttpServer'
 
 export const enum HTTP_METHODS {
@@ -25,7 +25,8 @@ export class FastifyHttpServer implements HttpServer<RouteHandlerMethod> {
     }
   }
 
-  public async register(plugin: FastifyPluginCallback, opts?: FastifyRegisterOptions<unknown>): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public async register(plugin: any, opts?: any): Promise<void> {
     this.app.register(plugin, opts)
   }
 }
