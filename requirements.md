@@ -3,7 +3,7 @@
 ## Functional Requirements
 - [x] - Should be able to register
 - [x] - Should be able to authenticate
-- [] - Should be possible to get profile information of a authenticated user
+- [x] - Should be possible to get profile information of a authenticated user
 - [] - Should be possible to get the number of reservations of a authenticated user
 - [] - Should be able to a user to get his reservation history
 - [] - Should be able to search for nearby events 
