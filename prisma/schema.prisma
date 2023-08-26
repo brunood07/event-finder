@@ -22,11 +22,12 @@ model User {
 }
 
 model Event {
-  id           String  @id @unique @default(uuid())
+  id           String   @id @unique @default(uuid())
   title        String
   description  String
   creator      String
   phone_number String?
+  date         DateTime
 
   spots           Int
   remaining_spots Int
@@ -41,6 +42,8 @@ model Event {
   state       String
   postal_code String
   complement  String?
+
+  created_at DateTime @default(now())
 
   Reserve Reserve[]
 

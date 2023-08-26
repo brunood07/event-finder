@@ -14,7 +14,7 @@ describe('Get Profile', () => {
   })
 
   it('should be able to get profile by id', async () => {
-    const user = await usersRepository.register({
+    const createdUser = await usersRepository.register({
       firstName: 'John',
       lastName: 'Doe',
       document: '42201034060',
@@ -22,11 +22,11 @@ describe('Get Profile', () => {
       password_hash: (await PasswordHash.create('123456', env.PASSWORD_SALT)).value
     })
     
-    const { user: userProfile } = await getProfileUseCase.execute({ userId: user.id })
+    const { user } = await getProfileUseCase.execute({ userId: createdUser.id })
 
-    expect(userProfile.firstName).toEqual('John')
-    expect(userProfile.lastName).toEqual('Doe')
-    expect(userProfile.document).toEqual('42201034060')
-    expect(userProfile.email).toEqual('john@doe.com')
+    expect(user.firstName).toEqual('John')
+    expect(user.lastName).toEqual('Doe')
+    expect(user.document).toEqual('42201034060')
+    expect(user.email).toEqual('john@doe.com')
   })
 })

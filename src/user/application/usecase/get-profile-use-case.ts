@@ -7,7 +7,9 @@ interface GetUserProfileInterface {
   userId: string;
 }
 
-type GetUserProfileResponse = Omit<User, 'password_hash'>
+type GetUserProfileResponse = {
+  user: Omit<User, 'password_hash'>
+}
 
 export default class GetProfileUseCase implements UseCase {
   constructor(private usersRepository: UsersRepository) {}
@@ -26,6 +28,6 @@ export default class GetProfileUseCase implements UseCase {
       created_at: userFound.created_at
     }
 
-    return user
+    return { user }
   }
 }
